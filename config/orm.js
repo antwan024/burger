@@ -15,11 +15,8 @@ function objToSql(ob) {
     var arr = [];
 
     for (var key in ob) {
-
         var value = ob[key];
-
         if (Object.hasOwnProperty.call(ob, key)) {
-
             if (typeof value === "string" && value.indexOf(" ") >= 0) {
                 value = "'" + value + "'";
             };
@@ -27,20 +24,33 @@ function objToSql(ob) {
         }
     }
 
-  return arr.toString();
-}
+    return arr.toString();
+};
 
 var orm = {
 
-    selectAll: function() {
+    selectAll: function(tableInput, cb) {
+        var queryString = "SELECT * FROM " + tableInput + ";";
+        connection.query(queryString, function(err, result) {
+            if (err) {
+                throw err;
+            }
+            cb(result);
+        });
+    },
+    insertOne: function(     ){
+
 
     },
+    updateOne: function(     ){
 
 
 
-},
+    }
 
+};
 
+module.exports = orm;
 // selectAll()
 // insertOne()
 // updateOne()
