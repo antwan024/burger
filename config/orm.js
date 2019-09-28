@@ -77,7 +77,7 @@ var orm = {
             cb(result);
         });
 
-    };
+    }
 
 };
 
