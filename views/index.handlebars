@@ -1,8 +1,38 @@
-<li>
-	{{name}}
+<h1>Burgers!</h1>
 
-	<button class="devour" data-id="{{id}}" data-newdevour="{{devour}}">
-		{{#if devour}}DEVOUR!{{else}} {{/if}}
-	</button>
+<h2>Burgers to eat!</h2>
 
-</li>
+<ul>
+  {{#each burgers}}
+    {{#unless devoured}}
+      {{> burgers/burger-block sleep=true}}
+    {{/unless}}
+  {{/each}}
+</ul>
+
+<h2>Burgers eaten!</h2>
+
+<ul>
+  {{#each burgers}}
+    {{#if devoured}}
+      {{> burgers/burger-block sleep=false}}
+    {{/if}}
+  {{/each}}
+</ul>
+
+<h2>Add a Burger</h2>
+<form class="create-form">
+
+  <div class="form-group">
+    <label for="burger">Burger Name:</label>
+    <input type="text" id="burger" name="name">
+  </div>
+
+  <div class="form-group">
+    <label for="devoured">Eat?</label><br>
+    <input type="radio" name="devoured" value="1" checked> Yum!<br>
+    <input type="radio" name="devoured" value="0"> Eat me
+  </div>
+
+  <button type="submit">Add Burger</button>
+</form>
